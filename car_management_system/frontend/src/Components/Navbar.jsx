@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import About from '../pages/About';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="font-mono absolute top-0 w-full bg-transparent p-4 z-20">
+    <nav className="font-mono absolute top-0 w-full bg-transparent p-4 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-gray-100 text-lg font-bold">
           Car Management System
         </div>
-        <div className="hidden md:flex space-x-5 mt-1 text-lg">
-          <a href="#home" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Home</a>
-          <a href="#cars" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Cars</a>
-          <a href="#about" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">About</a>
+        <div className="flex items-center space-x-5 md:space-x-10 text-lg"> {/* Adjusted space-x and added items-center */}
+          <Link to="/" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Home</Link>
+          <Link to="/Cars" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Cars</Link>
+          <Link to="/About" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">About</Link>
         </div>
         <div className="flex space-x-4">
-            <a><Link to="/Login" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Login</Link></a>
-            <a><Link to="/Register" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Register</Link></a>
-          </div>
+          <Link to="/Login" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Login</Link>
+          <Link to="/Register" className="text-gray-100 hover:text-gray-200 hover:border-b-2 border-transparent hover:border-white transition-colors duration-500">Register</Link>
+        </div>
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)} className="text-black-100 focus:outline-none">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
