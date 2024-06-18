@@ -43,16 +43,16 @@ function Brands() {
                             >
                                 <div className="absolute z-50 top-3 left-3 p-4 text-white">
                                     <div className="flex items-center">
-                                        <span className="mr-2">Name: {brand[1]}</span>
+                                        <div className="mr-2">{brand[1]}</div>
                                         <img 
-                                            src={`${brand[4]}`}
+                                            src={brand[4]}
                                             alt={`${brand[1]} Logo`} 
-                                            className="w-8 h-8" 
+                                            className="w-14 h-12" 
                                         />
                                     </div>
                                 </div>
                                 <img 
-                                    src={`${brand[2]}`}
+                                    src={brand[2]}
                                     alt={brand[1]} 
                                     className="w-full h-full object-cover" 
                                 />
@@ -67,8 +67,8 @@ function Brands() {
                         ))}
                     </div>
                 </div>
-                <button onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white text-xl px-3 py-1 rounded">Prev</button>
-                <button onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white text-xl px-3 py-1 rounded">Next</button>
+                <button onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-transparent bg-opacity-50 text-white text-xl px-3 py-1 rounded">←</button>
+                <button onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent bg-opacity-50 text-white text-xl px-3 py-1 rounded">→</button>
             </div>
         </div>
     );
