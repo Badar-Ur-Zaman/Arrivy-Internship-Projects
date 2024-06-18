@@ -5,6 +5,7 @@ import './index.css'
 import Home from './Home';
 import About from './pages/About';
 import Brands from './pages/Brands';
+import AllModels from './pages/Models/AllModels';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/About" element={<About />} />
           <Route path="/Cars" element={<Brands />} />
+          <Route path="/Models" element={<AllModels />} />
       </Routes>
     </BrowserRouter>
   );

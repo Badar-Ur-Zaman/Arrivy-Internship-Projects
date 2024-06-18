@@ -91,6 +91,18 @@ def get_brands():
     cursor.close()
     return jsonify(rows)
 
+@app.route('/models', methods=['POST'])
+def get_models():
+    data = request.get_json()
+    brandID = data['brand']
+    cursor = mysql.connection.cursor()
+    sql_query = "SELECT * FROM models WHERE brand_id = %s"
+    cursor.execute(sql_query, (brandID,))
+    rows = cursor.fetchall()
+    cursor.close()
+    return jsonify(rows)
+
+
 
 if __name__ == "__main__":
     app.run(host='localhost', port=5000)

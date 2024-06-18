@@ -25,7 +25,6 @@ function Register() {
             }
 
             const jsonData = await response.json();
-            console.log(jsonData);
 
             if (jsonData.message === 'Account created successfully.') {
                 navigate("/login");
