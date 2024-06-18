@@ -59,11 +59,8 @@ function AllModels() {
                                 key={model[0]} 
                                 className="carousel-item w-full flex-shrink-0 relative h-full"
                             >
-                                <div className="absolute z-50 top-3 left-3 p-4 text-white">
-                                    <div className="flex items-center flex-col">
-                                        <div>
-                                            <span>{model[1]}</span>
-                                        </div>
+                                <div className="absolute z-50 top-10 left-10 p-4 text-white">
+                                    <div className="text-lg flex items-start flex-col">
                                         <div><span>{`Year: ${model[3]}`}</span></div>
                                         <div><span>{`Price: ${model[4]} $`}</span></div>
                                         <div><span>{`Fuel-Type: ${model[5]}`}</span></div>
