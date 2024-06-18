@@ -47,7 +47,7 @@ function Brands() {
                                         <img 
                                             src={brand[4]}
                                             alt={`${brand[1]} Logo`} 
-                                            className="w-14 h-12" 
+                                            className="w-12 h-12" 
                                         />
                                     </div>
                                 </div>
