@@ -6,10 +6,32 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("User Information: ", {email, password});
-        navigate("/")
+        try {
+            const response = await fetch('http://localhost:5000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password}),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const jsonData = await response.json();
+            console.log(jsonData);
+
+            if (jsonData.message === 'Login Successful') {
+                navigate("/");
+            } else {
+                console.error('Failed to create account:', jsonData.message);
+            }
+        } catch (error) {
+            if (error) console.log(error);
+        }
     }
 
     return(
