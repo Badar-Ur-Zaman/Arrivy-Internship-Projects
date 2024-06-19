@@ -109,7 +109,7 @@ def add_model():
             cursor.close()
             return jsonify("Brand doesn't exist"), 400
 
-        brand_id = existing_brand[0]  # Access id from tuple by index
+        brand_id = existing_brand[0] 
         
         cursor.execute("INSERT INTO models (name, backgroundImg_url, issuanceYear, price, fuel_type, brand_id) VALUES (%s, %s, %s, %s, %s, %s)", 
                        (name, backgroundImgUrl, issuanceYear, price, fuelType, brand_id))
