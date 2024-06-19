@@ -93,7 +93,7 @@ function AddModels() {
                 </div>
                 <div className="mb-2">
                     <label className="block mb-1 text-gray-700">
-                        Price (In $):
+                        Price (In $): <span className="text-red-500">*</span>
                     </label>
                     <input 
                         type="number" 
@@ -106,7 +106,7 @@ function AddModels() {
                 </div>
                 <div className="mb-2">
                     <label className="block mb-1 text-gray-700">
-                        Fuel Type:
+                        Fuel Type: <span className="text-red-500">*</span>
                     </label>
                     <input 
                         type="text" 

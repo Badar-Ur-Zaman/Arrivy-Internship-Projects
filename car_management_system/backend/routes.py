@@ -102,22 +102,23 @@ def add_model():
         brand = data['brand']
 
         cursor = mysql.connection.cursor()
-        cursor.execute("Select id from brands where name like %s", ('%' + brand + '%'),)
+        cursor.execute("SELECT id FROM brands WHERE name = %s", (brand,))
         existing_brand = cursor.fetchone()
 
         if not existing_brand:
             cursor.close()
-            return jsonify({'message': "Brand doesn't exist"}), 400
+            return jsonify("Brand doesn't exist"), 400
 
-        cursor.execute("Insert into models (name, backgroundImg_url, issuanceYear, price, fuel_type, brand_id) VALUES (%s, %s, %s, %s, %s)", 
-                    (name, backgroundImgUrl, issuanceYear, price, fuelType, existing_brand[0]))
+        brand_id = existing_brand[0]  # Access id from tuple by index
+        
+        cursor.execute("INSERT INTO models (name, backgroundImg_url, issuanceYear, price, fuel_type, brand_id) VALUES (%s, %s, %s, %s, %s, %s)", 
+                       (name, backgroundImgUrl, issuanceYear, price, fuelType, brand_id))
         mysql.connection.commit()
         cursor.close()
         return jsonify({'message': 'Model added successfully.'}), 200
     except Exception as e:
         print(f"An error occurred: {e}")
         return jsonify({'message': 'An error occurred while adding the model'}), 500
-
 
 
 @app.route('/brands', methods = ['GET'])
