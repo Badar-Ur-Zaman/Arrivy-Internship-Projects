@@ -61,26 +61,64 @@ def login():
         print(f"An error occurred: {e}")
         return jsonify({'message': 'An error occurred during login'}), 500
 
-@app.route('/add_car', methods=['POST'])
-def add_car():
+@app.route('/add_brand', methods=['POST'])
+def add_brand():
     try:
-        data = request.get_json() 
-        model = data['model']
-        year = data['year']
-        brand = data['brand']
-        engine = data['engine']
-        fuel_type = data['fuel_type']
+        data = request.get_json()
+        name = data['name']
+        backgroundImgUrl = data['backgroundImgUrl']
+        website = data['website']
+        logo_url = data['logo_url']
 
         cursor = mysql.connection.cursor()
-        cursor.execute("INSERT INTO cars (model, year, brand, engine, fuel_type) VALUES (%s, %s, %s, %s, %s)", 
-                       (model, year, brand, engine, fuel_type))
+
+        cursor.execute("select * from brands WHERE name = %s", (name,))
+        existing_brand = cursor.fetchone()
+
+        if existing_brand:
+            cursor.close()
+            return jsonify({'message': 'Brand already exists.'}), 400
+
+        cursor.execute("INSERT INTO brands (name, backgroudImg_url, website, logo_url) VALUES (%s, %s, %s, %s)", 
+                       (name, backgroundImgUrl, website, logo_url),)
         mysql.connection.commit()
         cursor.close()
-        return jsonify({'message': 'Car added successfully.'}), 200
+        return jsonify({'message': 'Brand added successfully.'}), 200
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        return jsonify({'message': 'An error occurred while adding the car'}), 500
+        return jsonify({'message': 'An error occurred while adding the brand'}), 500
+
+
+@app.route("/add_model", methods=['POST'])
+def add_model():
+    try:
+        data = request.get_json()
+        name = data['name']
+        backgroundImgUrl = data['backgroundImgUrl']
+        issuanceYear = data['issuanceYear']
+        price = data['price']
+        fuelType = data['fuelType']
+        brand = data['brand']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("Select id from brands where name like %s", ('%' + brand + '%'),)
+        existing_brand = cursor.fetchone()
+
+        if not existing_brand:
+            cursor.close()
+            return jsonify({'message': "Brand doesn't exist"}), 400
+
+        cursor.execute("Insert into models (name, backgroundImg_url, issuanceYear, price, fuel_type, brand_id) VALUES (%s, %s, %s, %s, %s)", 
+                    (name, backgroundImgUrl, issuanceYear, price, fuelType, existing_brand[0]))
+        mysql.connection.commit()
+        cursor.close()
+        return jsonify({'message': 'Model added successfully.'}), 200
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return jsonify({'message': 'An error occurred while adding the model'}), 500
+
+
 
 @app.route('/brands', methods = ['GET'])
 def get_brands():
@@ -101,6 +139,17 @@ def get_models():
     rows = cursor.fetchall()
     cursor.close()
     return jsonify(rows)
+
+@app.route('/search_brands', methods=['POST'])
+def search_brands():
+    data = request.get_json()
+    search_term = data['searchTerm']
+    cursor = mysql.connection.cursor()
+    sql_query = "SELECT id from brands WHERE name LIKE %s"
+    cursor.execute(sql_query, ('%' + search_term + '%',))
+    results = cursor.fetchall()
+    cursor.close()
+    return jsonify(results)
 
 
 

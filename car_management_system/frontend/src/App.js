@@ -6,6 +6,8 @@ import Home from './Home';
 import About from './pages/About';
 import Brands from './pages/Brands';
 import AllModels from './pages/Models/AllModels';
+import AddBrand from './admin/AddBrand';
+import AddModels from './admin/AddModels';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Cars" element={<Brands />} />
           <Route path="/Models" element={<AllModels />} />
+          <Route path="/addBrand" element={<AddBrand />} />
+          <Route path="/addModel" element={<AddModels />} />
       </Routes>
     </BrowserRouter>
   );
