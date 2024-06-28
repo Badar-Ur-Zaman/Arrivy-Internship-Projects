@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { backend_url } from "../backendURL";
 
 function AddModels() {
     const [name, setName] = useState("");
@@ -18,7 +19,7 @@ function AddModels() {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/add_model', {
+            const response = await fetch(`${backend_url}/add_model`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,80 +59,74 @@ function AddModels() {
                     <label className="block mb-1 text-gray-700">
                         Name: <span className="text-red-500">*</span>
                     </label>
-                    <input 
-                        type="text" 
-                        placeholder="Name" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                        required 
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        className="w-full p-2 border border-gray-300 rounded mt-1" />
                 </div>
                 <div className="mb-2">
                     <label className="block mb-1 text-gray-700">
                         Background Image Url:
                     </label>
-                    <input 
-                        type="text" 
-                        placeholder="Background Img Url" 
-                        value={backgroundImgUrl} 
-                        onChange={(e) => setBackgroundImgUrl(e.target.value)} 
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
+                    <input
+                        type="text"
+                        placeholder="Background Img Url"
+                        value={backgroundImgUrl}
+                        onChange={(e) => setBackgroundImgUrl(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-1" />
                 </div>
                 <div className="mb-2">
                     <label className="block mb-1 text-gray-700">
                         Issuance Year:
                     </label>
-                    <input 
-                        type="number" 
-                        placeholder="Year" 
-                        value={issuanceYear} 
-                        onChange={(e) => setIssuanceYear(e.target.value)} 
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
+                    <input
+                        type="number"
+                        placeholder="Year"
+                        value={issuanceYear}
+                        onChange={(e) => setIssuanceYear(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-1" />
                 </div>
                 <div className="mb-2">
                     <label className="block mb-1 text-gray-700">
                         Price (In $): <span className="text-red-500">*</span>
                     </label>
-                    <input 
-                        type="number" 
-                        placeholder="Price" 
-                        value={price} 
-                        onChange={(e) => setPrice(e.target.value)} 
+                    <input
+                        type="number"
+                        placeholder="Price"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
                         required
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
+                        className="w-full p-2 border border-gray-300 rounded mt-1" />
                 </div>
                 <div className="mb-2">
                     <label className="block mb-1 text-gray-700">
                         Fuel Type: <span className="text-red-500">*</span>
                     </label>
-                    <input 
-                        type="text" 
-                        placeholder="Fuel Type" 
-                        value={fuelType} 
-                        onChange={(e) => setFuelType(e.target.value)} 
+                    <input
+                        type="text"
+                        placeholder="Fuel Type"
+                        value={fuelType}
+                        onChange={(e) => setFuelType(e.target.value)}
                         required
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
+                        className="w-full p-2 border border-gray-300 rounded mt-1" />
                 </div>
                 <div className="mb-2">
                     <label className="block mb-1 text-gray-700">
                         Brand Name:
                     </label>
-                    <input 
-                        type="text" 
-                        placeholder="Brand" 
-                        value={brand} 
-                        onChange={(e) => setBrand(e.target.value)} 
+                    <input
+                        type="text"
+                        placeholder="Brand"
+                        value={brand}
+                        onChange={(e) => setBrand(e.target.value)}
                         required
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
+                        className="w-full p-2 border border-gray-300 rounded mt-1" />
                 </div>
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     className="w-full bg-blue-400 text-white p-2 rounded mt-4 hover:bg-blue-600"
                 >
                     Add Model
@@ -148,4 +143,4 @@ function AddModels() {
     );
 }
 
-export default AddModels;
+export default AddModels

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "tailwindcss/tailwind.css"; // Make sure Tailwind CSS is imported
+import "tailwindcss/tailwind.css";
 import { useNavigate } from "react-router-dom";
+import { backend_url } from "../backendURL";
 
 function Brands() {
     const [brands, setBrands] = useState([]);
@@ -10,7 +11,7 @@ function Brands() {
     useEffect(() => {
         const handleSubmit = async () => {
             try {
-                const response = await fetch('http://localhost:5000/brands');
+                const response = await fetch(`${backend_url}/brands`);
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }

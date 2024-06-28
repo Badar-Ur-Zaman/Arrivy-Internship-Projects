@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { backend_url } from "../../backendURL";
 
 function Register() {
+
+    console.log("Backend URL:", backend_url);
+
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -12,7 +16,9 @@ function Register() {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/register', {
+            console.log("Fetch URL:", `${backend_url}/register`);
+
+            const response = await fetch(`${backend_url}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
+import { backend_url } from "../backendURL";
+
 
 function Search() {
     const [search, setSearch] = useState('');
@@ -15,7 +17,7 @@ function Search() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/search_brands', {
+            const response = await fetch(`${backend_url}/search_brands`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { backend_url } from "../backendURL";
 
 function AddBrand() {
     const [name, setName] = useState("");
@@ -16,7 +17,7 @@ function AddBrand() {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/add_brand', {
+            const response = await fetch(`${backend_url}/add_brand`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
