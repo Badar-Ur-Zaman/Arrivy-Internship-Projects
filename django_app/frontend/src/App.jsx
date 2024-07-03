@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
+import CallBack from './components/CallBack'
 
 const Logout = () => {
   localStorage.clear()
@@ -30,6 +31,7 @@ const App = () => {
           </ProtectedRoute>
         } />
         <Route path='/login' element={<Login />}/>
+        <Route path='/callback' element={<CallBack />}/>
         <Route path='/logout' element={<Logout />}/>
         <Route path='/register' element={<RegisterAndLogout />} />
         <Route path='/*' element={<NotFound />} />

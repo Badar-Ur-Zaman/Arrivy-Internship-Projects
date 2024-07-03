@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from api.views import CreateUserView
+from api.views import OAuth2Login, OAuth2Callback
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -8,6 +9,8 @@ urlpatterns = [
     path("api/user/register/", CreateUserView.as_view(), name="register"),
     path("api/token/", TokenObtainPairView.as_view(), name="get_token"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="get_refresh"),
+    path('login/', OAuth2Login.as_view(), name='oauth2_login'),
+    path('callback/', OAuth2Callback.as_view(), name='oauth2_callback'),
     path("api-auth/", include("rest_framework.urls")),
     path("api/", include("api.urls"))
 ]
